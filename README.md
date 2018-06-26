@@ -1,0 +1,1 @@
+Simple project for prooving youtubers with 1 way algorithm for Rubic`s cubs it doesn`t work.
