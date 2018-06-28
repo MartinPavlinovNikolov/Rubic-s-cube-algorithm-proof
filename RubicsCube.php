@@ -428,7 +428,7 @@ class RubicsCube {
 	public function randomlyScrambling($turnsFromPositiveNumber = 150, $toBiggerNumber = 350, $iterations = 1){
 		
 		if($iterations >= 120000){
-			echo '<h2>Too big number. Recomended sothing small</h2>';
+			echo '<h2>Too big number. Recomended somthing small</h2>';
 		}
 		$this->iterations = $iterations;
 
@@ -451,28 +451,31 @@ class RubicsCube {
 	 */
 	public function drawCube(){
 
-	  $avalableSides = ['frontSide', 'backSide', 'leftSide', 'rightSide', 'upSide', 'downSide'];
-	  $coordinates = [
-		'top-left', 'top-middle', 'top-right',
-		'middle-left', 'middle-middle', 'middle-right',
-		'bottom-left', 'bottom-middle', 'bottom-right'
-	  ];
+		$avalableSides = ['frontSide', 'backSide', 'leftSide', 'rightSide', 'upSide', 'downSide'];
+		$coordinates = [
+			'top-left', 'top-middle', 'top-right',
+			'middle-left', 'middle-middle', 'middle-right',
+			'bottom-left', 'bottom-middle', 'bottom-right'
+		];
 
-	  echo "<div>";
+		echo '<div class="container">
+			<div class="box">';
 
-	  for($j=0;$j<6;$j++){
+		for($j=0;$j<6;$j++){
 
-			echo "<div style=display:inline-block;margin-left:5px;><div>" . $avalableSides[$j] . "</div><br>";
+			echo "<div class=" . rtrim($avalableSides[$j], 'Side') . ">";
 
 			for($i=0;$i<9;$i++){
 				$side = $avalableSides[$j];
-				echo '<div style="display:inline-block;border:1px solid black;width:50px;height:50px;background-color:' . $this->$side[$coordinates[$i]] . '"></div>' . ($i==2 || $i==5 || $i==8 ? '<br>' : '');
+				echo '<div style="display:inline-block;border:1px solid black;box-sizing:border-box;border-radius: 5px;width:60px;height:60px;background-color:' . $this->$side[$coordinates[$i]] . '"></div>' . ($i==2 || $i==5 || $i==8 ? '<br>' : '');
 			}
-			echo '</div>';
-	  }
-	  echo '</div><hr>';
 
-	  return $this;
+			echo '</div>';
+		}
+		
+		echo '</div></div><hr>';
+
+		return $this;
 	}
 
 	public function solve($algoPathern){

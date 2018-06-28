@@ -4,6 +4,7 @@ require_once('RubicsCube.php');
 require_once('AlgoPathern.php');
 
 ?>
+<link rel="stylesheet" href="cube3D.css">
 
 <h1>Rubic`s cube solver</h1>
 
