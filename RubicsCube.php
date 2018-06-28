@@ -90,10 +90,7 @@ class RubicsCube {
 
 	public function __construct ($iterations = 100)
 	{
-		if($iterations >= 120000){
-			echo '<h2>Too big number. Recomended sothing small</h2>';
-		}
-		$this->iterations = $iterations;
+		
 	}
 	
 	/*
@@ -428,7 +425,13 @@ class RubicsCube {
 	/* 
 	 *Scrumble the cube
 	 */
-	public function randomlyScrambling($turnsFromPositiveNumber = 150, $toBiggerNumber = 350){
+	public function randomlyScrambling($turnsFromPositiveNumber = 150, $toBiggerNumber = 350, $iterations = 1){
+		
+		if($iterations >= 120000){
+			echo '<h2>Too big number. Recomended sothing small</h2>';
+		}
+		$this->iterations = $iterations;
+
 	  	$posibleMoves = [
 	  		'left', 'right', 'up', 'down', 'front', 'back','leftPrim', 'rightPrim', 'upPrim', 'downPrim', 'frontPrim', 'backPrim'
 	  	];
@@ -444,9 +447,9 @@ class RubicsCube {
 	}
 
 	/*
-	 * Drow the cube in the browser.
+	 * Draw the cube in the browser.
 	 */
-	public function drowCube(){
+	public function drawCube(){
 
 	  $avalableSides = ['frontSide', 'backSide', 'leftSide', 'rightSide', 'upSide', 'downSide'];
 	  $coordinates = [
@@ -472,8 +475,8 @@ class RubicsCube {
 	  return $this;
 	}
 
-	public function solve(array $algoPathern){
-		
+	public function solve($algoPathern){
+
 		$times = 1;
 
 		for($i=0;$i<=$this->iterations;$i++){

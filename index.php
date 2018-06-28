@@ -1,43 +1,45 @@
 <?php
 
 require_once('RubicsCube.php');
+require_once('AlgoPathern.php');
 
-$Cube = new RubicsCube(125);
+?>
 
-echo '<h1>Rubic`s cube</h1>';
+<h1>Rubic`s cube solver</h1>
 
-echo '<h2>Finished cube(Starting position)</h2>';
-$Cube->drowCube();
+<h2>Starting position:</h2>
 
-echo '<h2>Scrumble the cube ' . $Cube->iterations . ' times</h2>';
-$Cube->randomlyScrambling(150, 350);
-$Cube->drowCube();
+<?php
+$Cube = new RubicsCube();
+$Cube->drawCube();
 
-$algoPathern = [
-	'left',
-	'right',
-	'right',
-	'back',
-	'leftPrim',
-	'right',
-	'up',
-	'up',
-	'front',
-	'front',
-	'left',
-	'back',
-	'down',
-	'up',
-	'up',
-	'back',
-	'left',
-	'right',
-	'right',
-	'back',
-	'back',
-	'leftPrim',
-	'down'
-];
+?>
+<form method="POST" action="">
+	<label for="atempts">Loops Atempts:</label>
+	<input id="atempts" type=number name="atempts" value=1 placeholder="number of algorithm loops">
+	<label for="algorithm">Algorithm:</label>
+	<input id="algorithm" type="text" name="algorithm" value="L R R B L' R U U F F B D U U B L R R B B L' D">
+	<input type="submit" name="submit" value="Check">
+</form>
 
-$Cube->solve($algoPathern);
-$Cube->drowCube();
+<?php
+if(isset($_POST['submit'])){
+	
+	if(!isset($_POST['atempts']) || $_POST['atempts'] == null){
+		echo '<h2>Ooopss, you forget to choose how many times algorithm will be aplly!</h2>';
+	}elseif(!isset($_POST['algorithm']) || $_POST['algorithm'] == null){
+		echo '<h2>Ooopss, you forget to insert algorithm!</h2>';
+	}else{
+
+		$atempts = $_POST['atempts'];
+
+		$Cube->randomlyScrambling(150, 350, $atempts);
+		echo '<h2>Shuffle the cube.Result after shuffle:</h2>';
+		$Cube->drawCube();
+
+		$algoPathern = AlgoPathern::getInstance()->setPathern($_POST['algorithm'])->getPathern();
+
+		$Cube->solve($algoPathern);
+		$Cube->drawCube();
+	}
+}
