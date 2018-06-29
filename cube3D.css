@@ -1,6 +1,9 @@
+body {
+	background-color: #ccc;
+}
 .container {
 	width: 180px;
-	height: 180px;
+	height: 280px;
 	margin: 100px auto;
 	perspective: 800px;
 	transform-style: preserve-3d;
@@ -12,7 +15,7 @@
 	transform-style: preserve-3d;
 	color: orange;
 	text-align: center;
-	animation: rotate 15s linear infinite;
+	animation: rotate 10s linear infinite;
 }
 
 .front, .back, .left, .right, .up, .down {
@@ -20,6 +23,9 @@
 	width: 180px;
 	height: 180px;
 	border: 1px solid black;
+}
+.front div, .back div, .left div, .right div, .up div, .down div {
+	box-shadow: inset 0 0 1px 2px white;
 }
 
 .front {
@@ -45,13 +51,15 @@
 }
 
 .up {
-	transform: rotateX(-90deg) translateY(-90px);
+	transform: rotateX(90deg) translateY(-90px);
 	background-color: #1f122c;
 	transform-origin: top;
 }
 
 .down {
-	transform: rotateX(90deg) translateY(90px);
+	transform: rotateX(90deg) translateY(90px) translateZ(-90px);
+	box-shadow: 0 0 50px 30px white;
+	opacity: .1;
 	background-color: #1f122c;
 	transform-origin: bottom;
 }

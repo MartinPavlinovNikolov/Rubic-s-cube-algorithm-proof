@@ -104,7 +104,6 @@ class RubicsCube {
 			$this->frontSide['top-middle'] === 'red' &&
 			$this->frontSide['top-right'] === 'red' &&
 			$this->frontSide['middle-left'] === 'red' &&
-			$this->frontSide['middle-middle'] === 'red' &&
 			$this->frontSide['middle-right'] === 'red' &&
 			$this->frontSide['bottom-left'] === 'red' &&
 			$this->frontSide['bottom-middle'] === 'red' &&
@@ -114,7 +113,6 @@ class RubicsCube {
 			$this->backSide['top-middle'] === 'green' &&
 			$this->backSide['top-right'] === 'green' &&
 			$this->backSide['middle-left'] === 'green' &&
-			$this->backSide['middle-middle'] === 'green' &&
 			$this->backSide['middle-right'] === 'green' &&
 			$this->backSide['bottom-left'] === 'green' &&
 			$this->backSide['bottom-middle'] === 'green' &&
@@ -124,7 +122,6 @@ class RubicsCube {
 			$this->leftSide['top-middle'] === 'blue' &&
 			$this->leftSide['top-right'] === 'blue' &&
 			$this->leftSide['middle-left'] === 'blue' &&
-			$this->leftSide['middle-middle'] === 'blue' &&
 			$this->leftSide['middle-right'] === 'blue' &&
 			$this->leftSide['bottom-left'] === 'blue' &&
 			$this->leftSide['bottom-middle'] === 'blue' &&
@@ -134,7 +131,6 @@ class RubicsCube {
 			$this->rightSide['top-middle'] === 'orange' &&
 			$this->rightSide['top-right'] === 'orange' &&
 			$this->rightSide['middle-left'] === 'orange' &&
-			$this->rightSide['middle-middle'] === 'orange' &&
 			$this->rightSide['middle-right'] === 'orange' &&
 			$this->rightSide['bottom-left'] === 'orange' &&
 			$this->rightSide['bottom-middle'] === 'orange' &&
@@ -144,21 +140,10 @@ class RubicsCube {
 			$this->upSide['top-middle'] === 'yellow' &&
 			$this->upSide['top-right'] === 'yellow' &&
 			$this->upSide['middle-left'] === 'yellow' &&
-			$this->upSide['middle-middle'] === 'yellow' &&
 			$this->upSide['middle-right'] === 'yellow' &&
 			$this->upSide['bottom-left'] === 'yellow' &&
 			$this->upSide['bottom-middle'] === 'yellow' &&
-			$this->upSide['bottom-right'] === 'yellow' &&
-
-			$this->downSide['top-left'] === 'white' &&
-			$this->downSide['top-middle'] === 'white' &&
-			$this->downSide['top-right'] === 'white' &&
-			$this->downSide['middle-left'] === 'white' &&
-			$this->downSide['middle-middle'] === 'white' &&
-			$this->downSide['middle-right'] === 'white' &&
-			$this->downSide['bottom-left'] === 'white' &&
-			$this->downSide['bottom-middle'] === 'white' &&
-			$this->downSide['bottom-right'] === 'white'
+			$this->upSide['bottom-right'] === 'yellow'
 		);
 	}
 
@@ -170,17 +155,17 @@ class RubicsCube {
 		$this->frontSide['middle-left'] = $this->upSide['middle-left'];
 		$this->frontSide['bottom-left'] = $this->upSide['bottom-left'];
 
-		$this->upSide['top-left'] = $this->backSide['top-right'];
+		$this->upSide['top-left'] = $this->backSide['bottom-right'];
 		$this->upSide['middle-left'] = $this->backSide['middle-right'];
-		$this->upSide['bottom-left'] = $this->backSide['bottom-right'];
+		$this->upSide['bottom-left'] = $this->backSide['top-right'];
 
-		$this->backSide['top-right'] = $this->downSide['top-left'];
-		$this->backSide['middle-right'] = $this->downSide['middle-left'];
 		$this->backSide['bottom-right'] = $this->downSide['bottom-left'];
+		$this->backSide['middle-right'] = $this->downSide['middle-left'];
+		$this->backSide['top-right'] = $this->downSide['top-left'];
 
-		$this->downSide['top-left'] = $this->cacheCube->frontSide['top-left'];
+		$this->downSide['top-left'] = $this->cacheCube->frontSide['bottom-left'];
 		$this->downSide['middle-left'] = $this->cacheCube->frontSide['middle-left'];
-		$this->downSide['bottom-left'] = $this->cacheCube->frontSide['bottom-left'];
+		$this->downSide['bottom-left'] = $this->cacheCube->frontSide['top-left'];
 
 		$this->leftSide['top-left'] = $this->cacheCube->leftSide['bottom-left'];
 		$this->leftSide['top-middle'] = $this->cacheCube->leftSide['middle-left'];
@@ -200,17 +185,17 @@ class RubicsCube {
 	{
 		$this->cacheCube = clone $this;
 		
-		$this->frontSide['top-right'] = $this->downSide['top-right'];
+		$this->frontSide['top-right'] = $this->downSide['bottom-right'];
 		$this->frontSide['middle-right'] = $this->downSide['middle-right'];
-		$this->frontSide['bottom-right'] = $this->downSide['bottom-right'];
+		$this->frontSide['bottom-right'] = $this->downSide['top-right'];
 		
 		$this->downSide['top-right'] = $this->backSide['top-left'];
 		$this->downSide['middle-right'] = $this->backSide['middle-left'];
 		$this->downSide['bottom-right'] = $this->backSide['bottom-left'];
 		
-		$this->backSide['top-left'] = $this->upSide['top-right'];
+		$this->backSide['top-left'] = $this->upSide['bottom-right'];
 		$this->backSide['middle-left'] = $this->upSide['middle-right'];
-		$this->backSide['bottom-left'] = $this->upSide['bottom-right'];
+		$this->backSide['bottom-left'] = $this->upSide['top-right'];
 
 		$this->upSide['top-right'] = $this->cacheCube->frontSide['top-right'];
 		$this->upSide['middle-right'] = $this->cacheCube->frontSide['middle-right'];
@@ -286,14 +271,14 @@ class RubicsCube {
 		$this->rightSide['bottom-middle'] = $this->cacheCube->frontSide['bottom-middle'];
 		$this->rightSide['bottom-right'] = $this->cacheCube->frontSide['bottom-right'];
 
-		$this->downSide['top-left'] = $this->cacheCube->downSide['bottom-left'];
-		$this->downSide['top-middle'] = $this->cacheCube->downSide['middle-left'];
-		$this->downSide['top-right'] = $this->cacheCube->downSide['top-left'];
-		$this->downSide['middle-right'] = $this->cacheCube->downSide['top-middle'];
-		$this->downSide['bottom-right'] = $this->cacheCube->downSide['top-right'];
-		$this->downSide['bottom-middle'] = $this->cacheCube->downSide['middle-right'];
-		$this->downSide['bottom-left'] = $this->cacheCube->downSide['bottom-right'];
-		$this->downSide['middle-left'] = $this->cacheCube->downSide['bottom-middle'];
+		$this->downSide['top-left'] = $this->cacheCube->downSide['top-right'];
+		$this->downSide['top-middle'] = $this->cacheCube->downSide['middle-right'];
+		$this->downSide['top-right'] = $this->cacheCube->downSide['bottom-right'];
+		$this->downSide['middle-right'] = $this->cacheCube->downSide['bottom-middle'];
+		$this->downSide['bottom-right'] = $this->cacheCube->downSide['bottom-left'];
+		$this->downSide['bottom-middle'] = $this->cacheCube->downSide['middle-left'];
+		$this->downSide['bottom-left'] = $this->cacheCube->downSide['top-left'];
+		$this->downSide['middle-left'] = $this->cacheCube->downSide['top-middle'];
 
 		$this->cacheCube = null;
 
@@ -304,17 +289,17 @@ class RubicsCube {
 	{
 		$this->cacheCube = clone $this;
 		
-		$this->upSide['bottom-left'] = $this->leftSide['top-right'];
+		$this->upSide['bottom-left'] = $this->leftSide['bottom-right'];
 		$this->upSide['bottom-middle'] = $this->leftSide['middle-right'];
-		$this->upSide['bottom-right'] = $this->leftSide['bottom-right'];
+		$this->upSide['bottom-right'] = $this->leftSide['top-right'];
 
-		$this->leftSide['top-right'] = $this->downSide['top-left'];
-		$this->leftSide['middle-right'] = $this->downSide['top-middle'];
-		$this->leftSide['bottom-right'] = $this->downSide['top-right'];
+		$this->leftSide['top-right'] = $this->downSide['bottom-left'];
+		$this->leftSide['middle-right'] = $this->downSide['bottom-middle'];
+		$this->leftSide['bottom-right'] = $this->downSide['bottom-right'];
 
-		$this->downSide['top-left'] = $this->rightSide['top-left'];
-		$this->downSide['top-middle'] = $this->rightSide['middle-left'];
-		$this->downSide['top-right'] = $this->rightSide['bottom-left'];
+		$this->downSide['bottom-left'] = $this->rightSide['bottom-left'];
+		$this->downSide['bottom-middle'] = $this->rightSide['middle-left'];
+		$this->downSide['bottom-right'] = $this->rightSide['top-left'];
 		
 		$this->rightSide['top-left'] = $this->cacheCube->upSide['bottom-left'];
 		$this->rightSide['middle-left'] = $this->cacheCube->upSide['bottom-middle'];
@@ -338,17 +323,17 @@ class RubicsCube {
 	{
 		$this->cacheCube = clone $this;
 		
-		$this->upSide['top-right'] = $this->rightSide['top-right'];
+		$this->upSide['top-left'] = $this->rightSide['top-right'];
 		$this->upSide['top-middle'] = $this->rightSide['middle-right'];
-		$this->upSide['top-left'] = $this->rightSide['bottom-right'];
+		$this->upSide['top-right'] = $this->rightSide['bottom-right'];
 
-		$this->rightSide['top-right'] = $this->downSide['bottom-right'];
-		$this->rightSide['middle-right'] = $this->downSide['bottom-middle'];
-		$this->rightSide['bottom-right'] = $this->downSide['bottom-left'];
+		$this->rightSide['top-right'] = $this->downSide['top-right'];
+		$this->rightSide['middle-right'] = $this->downSide['top-middle'];
+		$this->rightSide['bottom-right'] = $this->downSide['top-left'];
 
-		$this->downSide['bottom-left'] = $this->leftSide['top-left'];
-		$this->downSide['bottom-middle'] = $this->leftSide['middle-left'];
-		$this->downSide['bottom-right'] = $this->leftSide['bottom-left'];
+		$this->downSide['top-left'] = $this->leftSide['top-left'];
+		$this->downSide['top-middle'] = $this->leftSide['middle-left'];
+		$this->downSide['top-right'] = $this->leftSide['bottom-left'];
 		
 		$this->leftSide['top-left'] = $this->cacheCube->upSide['top-right'];
 		$this->leftSide['middle-left'] = $this->cacheCube->upSide['top-middle'];
@@ -370,54 +355,42 @@ class RubicsCube {
 
 	public function leftPrim()
 	{
-		$this->left();
-		$this->left();
-		$this->left();
+		$this->left()->left()->left();
 
 		return $this;
 	}
 
 	public function rightPrim()
 	{
-		$this->right();
-		$this->right();
-		$this->right();
+		$this->right()->right()->right();
 
 		return $this;
 	}
 
 	public function upPrim()
 	{
-		$this->up();
-		$this->up();
-		$this->up();
+		$this->up()->up()->up();
 
 		return $this;
 	}
 
 	public function downPrim()
 	{
-		$this->down();
-		$this->down();
-		$this->down();
+		$this->down()->down()->down();
 
 		return $this;
 	}
 
 	public function frontPrim()
 	{
-		$this->front();
-		$this->front();
-		$this->front();
+		$this->front()->front()->front();
 
 		return $this;
 	}
 
 	public function backPrim()
 	{
-		$this->back();
-		$this->back();
-		$this->back();
+		$this->back()->back()->back();
 
 		return $this;
 	}
